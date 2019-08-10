@@ -4,8 +4,10 @@
   "description": "Wake up in a different country every morning",
   "main": "index.js",
   "scripts": {
+    "build": "webpack -d",
+    "react:dev": "webpack -d --watch",
     "start": "node server/index.js",
-    "start:dev": "nodemon server/index.js",
+    "start:dev": "nodemon server/index.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +30,11 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "nodemon": "^1.19.1"
+    "css-loader": "^3.2.0",
+    "nodemon": "^1.19.1",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
   }
 }
