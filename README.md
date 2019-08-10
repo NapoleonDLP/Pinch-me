@@ -1,2 +1,2 @@
 # Pinch me
-Wake up in a new country every morning. 
+Wake up in a different country every morning. 
