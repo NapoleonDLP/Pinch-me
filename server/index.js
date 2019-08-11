@@ -3,8 +3,9 @@ const app = express();
 const port = 3000;
 
 // deliver static html
+app.use(express.static('public'));
 
-app.get('/', (req, res) => res.send('Hello world!'));
+// app.get('/', (req, res) => res.send('Hello world!'));
 
 app.post('/', (req, res) => {
   // write alarm time to database
