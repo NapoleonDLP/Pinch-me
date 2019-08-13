@@ -5,7 +5,7 @@ function Alarms(props) {
     return (
       <div id="alarmList">
         {allAlarms.map((alarm, id) => (
-          <div key={id} id="listHour">{alarm.hour}:{alarm.minute}:{alarm.seconds}  {alarm.ampm}</div>
+          <div onClick={props.deleteAlarm.bind(this)} key={id} name={alarm._id} id="listHour">{alarm.hour}:{alarm.minute}:{alarm.seconds}  {alarm.ampm}</div>
         ))}
       </div>
     )
