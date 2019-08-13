@@ -35,7 +35,10 @@ class App extends React.Component {
   render() {
     return (
       <div id="app" >
-        <h1>Pinch Me</h1>
+        <div id="header">
+          <h1 id="name">Pinch Me</h1>
+          <h1 id="date">{this.state.time.substring(0, 9)}</h1>
+        </div>
         <Clock time={this.state.time} />
         <Alarm alarms={this.state.alarms} time={this.state.time} />
       </div>
