@@ -16,26 +16,27 @@ class Alarm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({ alarms: this.props.alarms })
+  }
+
   selectTime(e) {
-    console.log(e.target.value);
-    console.log(e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e) {
     const form = e.target;
     e.preventDefault();
-
-    fetch('http://localhost:3000/setAlarm', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.state),
-    })
-    .then((result) => result.json())
-    .then((result) => this.setState({alarms: this.state.alarms.concat([result])}))
-    .catch((err) => console.log(err));
+      fetch('http://localhost:3000/setAlarm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.state),
+      })
+      .then((result) => result.json())
+      .then((result) => this.setState({ alarms: result }))
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -71,7 +72,7 @@ class Alarm extends React.Component {
           <input type="submit" name="submit" id="setAlarm" value="Set Alarm" onClick={this.handleSubmit}></input>
         </form>
         <div id="alarms">
-          <Alarms alarms={this.state.alarms} />
+          <Alarms stateAlarms={this.state.alarms} propsAlarms={this.props.alarms} />
         </div>
       </div>
     )
