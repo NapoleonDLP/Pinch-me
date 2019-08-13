@@ -33,8 +33,24 @@ app.post('/setAlarm', (req, res) => {
   })
 });
 
-app.delete('/', (req, res) => {
+app.delete('/deleteAlarm', (req, res) => {
   //delete alarm time from database
+  const alarm = req.body;
+  Alarm.findOneAndDelete(alarm, (err, result) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      // res.send(result)
+      Alarm.find((err, result) => {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.send(result);
+        }
+      })
+    }
+  })
+
 });
 
 app.put('/', (req, res) => {
