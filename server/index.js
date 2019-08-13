@@ -1,16 +1,27 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
+const { db, Alarm } = require('./db/connection.js')
 
 // deliver static html
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // app.get('/', (req, res) => res.send('Hello world!'));
 
-app.post('/', (req, res) => {
+app.post('/setAlarm', (req, res) => {
   // write alarm time to database
-
+  const alarmSettings = req.body;
   // res with status code
+  const newAlarm = new Alarm(alarmSettings);
+  newAlarm.save((err, savedAlarm) => {
+    if (err) {
+      throw err
+    }
+    res.send(savedAlarm);
+  })
 });
 
 app.delete('/', (req, res) => {
