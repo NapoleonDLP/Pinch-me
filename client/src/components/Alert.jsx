@@ -3,7 +3,6 @@ import React from 'react';
 let alert = false;
 let seconds = 0;
 function Alert (props) {
-  console.log(seconds)
   const allAlarms = props.propsAlarms.concat(props.stateAlarms);
   const currentTime = {
     hour: props.time[10] + props.time[11],
@@ -20,9 +19,13 @@ function Alert (props) {
 
   if (alert) {
     seconds ++;
-    return (
-      <h1 id="alert">WAKE UP!</h1>
-    )
+    if(seconds % 2 === 0) {
+      return (
+        <h1 id="alert">WAKE UP!</h1>
+      )
+    } else {
+      return <h1></h1>
+    }
   } else if (seconds > 10) {
     seconds = 0;
     alert = false;
