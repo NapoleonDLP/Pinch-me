@@ -6,7 +6,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: new Date().toLocaleString()
+      time: new Date().toLocaleString(),
+      alarms: [],
     };
   }
 
@@ -14,6 +15,11 @@ class App extends React.Component {
     this.intervalID = setInterval(
       () => this.tick(), 1000
     );
+
+  fetch('http://localhost:3000/alarms')
+    .then((result) => result.json())
+    .then((result) => this.setState({ alarms: result }))
+    .catch((err) => console.log('err'));
   }
 
   componentWillUnmount() {
@@ -31,7 +37,7 @@ class App extends React.Component {
       <div id="app" >
         <h1>Pinch Me</h1>
         <Clock time={this.state.time} />
-        <Alarm time={this.state.time} />
+        <Alarm alarms={this.state.alarms} time={this.state.time} />
       </div>
     )
   }
