@@ -27,7 +27,7 @@ class Alarm extends React.Component {
   }
 
   deleteAlarm(e) {
-    e.preventDefault();
+    e.persist();
     const timeString = e.target.innerText;
     const alarm = {
       hour: timeString[0] + timeString[1],
