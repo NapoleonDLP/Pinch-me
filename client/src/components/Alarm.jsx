@@ -1,6 +1,7 @@
 import React from 'react';
 import options from '../helpers.js';
 import Alarms from './AlarmList.jsx';
+import Alert from './Alert.jsx';
 
 class Alarm extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Alarm extends React.Component {
     }
     this.selectTime = this.selectTime.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteAlarm = this.deleteAlarm.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +24,27 @@ class Alarm extends React.Component {
 
   selectTime(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  deleteAlarm(e) {
+    e.preventDefault();
+    const timeString = e.target.innerText;
+    const alarm = {
+      hour: timeString[0] + timeString[1],
+      minute: timeString[3] + timeString[4],
+      seconds: timeString[6] + timeString[7],
+      ampm: timeString[9] + timeString[10],
+    }
+    fetch('http://localhost:3000/deleteAlarm', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(alarm),
+      })
+      .then((result) => result.json())
+      .then((result) => this.setState({ alarms: result }))
+      .catch((err) => console.log(err));
   }
 
   handleSubmit(e) {
@@ -35,7 +58,7 @@ class Alarm extends React.Component {
         body: JSON.stringify(this.state),
       })
       .then((result) => result.json())
-      .then((result) => this.setState({ alarms: result }))
+      .then((result) => this.setState({ alarms: this.state.alarms.concat(result) }))
       .catch((err) => console.log(err));
   }
 
@@ -72,7 +95,10 @@ class Alarm extends React.Component {
           <input type="submit" name="submit" id="setAlarm" value="Set Alarm" onClick={this.handleSubmit}></input>
         </form>
         <div id="alarms">
-          <Alarms stateAlarms={this.state.alarms} propsAlarms={this.props.alarms} />
+          <Alarms deleteAlarm={this.deleteAlarm} stateAlarms={this.state.alarms} propsAlarms={this.props.alarms} />
+        </div>
+        <div id="alert">
+          <Alert time={this.props.time} stateAlarms={this.state.alarms} propsAlarms={this.props.alarms} />
         </div>
       </div>
     )
