@@ -9,7 +9,16 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.get('/', (req, res) => res.send('Hello world!'));
+app.get('/alarms', (req, res) => {
+  Alarm.find((err, results) => {
+    if (err) {
+      res.sendStatus(500);
+      console.log('Error finding records: ', err)
+    } else {
+      res.send(results);
+    }
+  })
+});
 
 app.post('/setAlarm', (req, res) => {
   // write alarm time to database
