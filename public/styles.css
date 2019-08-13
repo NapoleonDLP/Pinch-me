@@ -1,0 +1,14 @@
+body {
+  background-color: black;
+}
+
+#app {
+  font-family: 'Orbitron';
+  color: aqua;
+}
+
+/* ****** ALARM FORM ***** */
+
+#alert {
+  color: lawngreen
+}
