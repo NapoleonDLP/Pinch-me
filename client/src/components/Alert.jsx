@@ -17,7 +17,7 @@ function Alert (props) {
     }
   }
 
-  if (alert) {
+  if (alert && seconds < 15) {
     seconds ++;
     if(seconds % 2 === 0) {
       return (
@@ -26,7 +26,7 @@ function Alert (props) {
     } else {
       return <h1></h1>
     }
-  } else if (seconds > 10) {
+  } else if (seconds > 15) {
     seconds = 0;
     alert = false;
     return <h1></h1>
