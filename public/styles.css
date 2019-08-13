@@ -7,6 +7,20 @@ body {
   color: aqua;
 }
 
+#header {
+  display: flex;
+  color: red;
+}
+
+#name {
+  width: 50%;
+}
+
+#date {
+  text-align: right;
+  width: 50%;
+}
+
 /* ****** ALARM FORM ***** */
 
 #alert {
