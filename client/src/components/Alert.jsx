@@ -12,7 +12,7 @@ function Alert (props) {
   }
   for(var i = 0; i < allAlarms.length; i++) {
     let alarm = allAlarms[i];
-    if (alarm['minute'] === currentTime['minute'] && alarm['seconds'] === currentTime['seconds'] && alarm['ampm'].toUpperCase() === currentTime['ampm']) {
+    if (alarm['hour'][1] === currentTime['hour'][1] && alarm['minute'] === currentTime['minute'] && alarm['seconds'] === currentTime['seconds'] && alarm['ampm'].toUpperCase() === currentTime['ampm']) {
       alert = true;
     }
   }
