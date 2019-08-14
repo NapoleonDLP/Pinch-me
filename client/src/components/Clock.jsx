@@ -7,7 +7,9 @@ class Clock extends React.Component {
 
   render() {
     return (
-      <h1>{this.props.time}</h1>
+      <div id="clock">
+        <h1 id="time">{this.props.time.substring(10, this.props.time.length)}</h1>
+      </div>
     )
   }
 }
