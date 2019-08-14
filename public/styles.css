@@ -36,6 +36,24 @@ body {
 
 #time {
   /* text-align: center; */
-  vertical-align: middle;
+  /* vertical-align: middle; */
   font-size: 100px;
+}
+
+#alarmSelector {
+  display: inline-block;
+  /* text-align: center; */
+}
+
+form {
+  text-align: center;
+}
+
+#instruction {
+  text-align: center;
+}
+
+#alarms {
+  text-align: center;
+  margin: 65px;
 }
