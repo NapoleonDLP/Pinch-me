@@ -65,6 +65,7 @@ class Alarm extends React.Component {
   render() {
     return (
       <div>
+        <p id="instruction">Set your alarm</p>
         <form>
           <label>
             <div id="alarmSelector">
@@ -91,8 +92,8 @@ class Alarm extends React.Component {
                 <option name="pm">pm</option>
               </select>
             </div>
-          </label>
           <input type="submit" name="submit" id="setAlarm" value="Set Alarm" onClick={this.handleSubmit}></input>
+          </label>
         </form>
         <div id="alarms">
           <Alarms deleteAlarm={this.deleteAlarm} stateAlarms={this.state.alarms} propsAlarms={this.props.alarms} />
